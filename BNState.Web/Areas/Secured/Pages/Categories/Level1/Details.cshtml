@@ -1,0 +1,264 @@
+﻿@page
+@model BNState.Web.Areas.Secured.Pages.Categories.Level1.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<!-- /.card -->
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-edit"></i>
+            @Model.Category1.Title
+        </h3>
+        <a asp-page="/Categories/Level1/Index" class="btn bg-gradient-warning btn-sm" style="float:right;">Back</a>
+
+    </div>
+    <div class="card-body">
+        <p class="text-justify">@Html.Raw(Model.Category1.Description)</p>
+
+    </div>
+    <div class="card-body">
+        <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+            <li class="nav-item">
+                <a style="font-size: 23px;font-weight: 900;" class="nav-link active" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Subsidiaries (@Model.Category1.Category2s.Count())</a>
+            </li>
+            <li class="nav-item">
+                <a style="font-size: 23px;font-weight: 900;" class="nav-link " id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Officials (@Model.Category1.Appointments.Count())</a>
+            </li>
+            <li class="nav-item">
+                <a style="font-size: 23px;font-weight: 900;" class="nav-link " id="custom-content-below-dashboard-tab" data-toggle="pill" href="#custom-content-below-dashboard" role="tab" aria-controls="custom-content-below-dashboard" aria-selected="true"> Details </a>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="custom-content-below-tabContent">
+            <div class="tab-pane fade" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="font-size: 23px;font-weight: 900;">
+                            Officials
+                        </h3>
+
+
+                        <a asp-page="./NewOfficial" asp-route-id="@Model.Category1.Id" class="btn bg-gradient-warning btn-sm" style="float:right;">Add New</a>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>
+                                            Position
+                                        </th>
+                                        <th>
+                                            Fullname
+                                        </th>
+                                        <th>Appointment</th>
+                                        <th>Photo</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @{
+                                    int sn = 0;
+                                }
+                                <tbody>
+                                    @foreach (var item in Model.Category1.Appointments)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{
+                                                    sn++;
+                                                }
+                                                @sn
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.Position)
+
+                                            </td>
+                                            <td>
+                                                <a asp-page="/ProfilePage/ProfileAccount" asp-route-id="@item.ProfileId" asp-route-p1="Categories" asp-route-p2="Level1" asp-route-lid="@Model.Category1.Id">
+                                                    @Html.DisplayFor(modelItem => item.Profile.Fullname)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @item.StartOfAppointment.ToString("yyyy") - @item.EndOfAppointment.ToString("yyyy")
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    <img src="@item.Profile.PhotoUrl" style="max-height:70px;" />
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a asp-page="./Update" asp-route-id="@item.Category1Id" asp-route-mid="@item.Id" class="float-left btn btn-warning btn-sm" style="margin-right:5px;"><i class="fa fa-pencil"></i></a>
+                                                <form method="post" asp-page-handler="Delete">
+                                                    <input type="hidden" name="id" value="@item.Id" />
+                                                    <input type="hidden" name="mid" value="@item.Category1Id" />
+                                                    <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-times"></i></button>
+
+                                                </form>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="tab-pane fade show active" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="font-size: 23px;font-weight: 900;">Subsidiaries</h3>
+
+
+                        <a asp-page="./NewLevel" asp-route-id="@Model.Category1.Id" class="btn bg-gradient-warning btn-sm" style="float:right;">Add New</a>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>
+                                            Title
+                                        </th>
+                                        <th>
+                                            Head
+                                        </th>
+                                        <th>Sub</th>
+                                        <th>Color</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @{
+                                    int tsn = 0;
+                                }
+                                <tbody>
+                                    @foreach (var item in Model.Category1.Category2s)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{
+                                                    tsn++;
+                                                }
+                                                @tsn
+                                            </td>
+                                            <td>
+                                                <a asp-page="/Categories/Level2/Details" asp-route-id="@item.Id" asp-area="Secured">
+                                                @Html.DisplayFor(modelItem => item.Title)
+
+                                                </a>
+                                            </td>
+                                            <td>
+                                               
+                                                    @{
+                                                        var subs = item.Appointments.FirstOrDefault();
+                                                    }
+                                                    @if (subs != null)
+                                                    {
+                                                        <a asp-page="/ProfilePage/ProfileAccount" asp-route-id="@subs.ProfileId">
+                                                        <h4>@subs.Profile.Fullname</h4>
+                                                        </a>
+                                                        <h5>@subs.Position</h5>
+                                                        <h6>@subs.StartOfAppointment.ToString("yyyy") - @subs.EndOfAppointment.ToString("yyyy")</h6>
+                                                    }                        else
+                                                        {
+                                                            <h6>----/-----</h6>
+                                                        }
+
+                                            </td>
+                                            <td>
+                                                @item.Category3s.Count()
+                                            </td>
+                                            <td>
+                                                <span style="height:15px;width:15px;" class="btn @item.Color">.</span>
+                                                <form method="post" asp-page-handler="RefreshColor">
+                                                    <input type="hidden" name="id" value="@item.Id" />
+                                                    <button class="btn btn-primary btn-xs" type="submit"><i class="fa fa-refresh"></i></button>
+
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <a asp-page="./UpdateLevel" asp-route-mid="@item.Category1Id" asp-route-id="@item.Id" class="float-left btn btn-warning btn-sm" style="margin-right:5px;"><i class="fa fa-pencil"></i></a>
+                                                <form method="post" asp-page-handler="DeleteLevel">
+                                                    <input type="hidden" name="id" value="@item.Id" />
+                                                    <input type="hidden" name="mid" value="@item.Category1Id" />
+                                                    <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-times"></i></button>
+
+                                                </form>
+                                            </td>
+
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="custom-content-below-dashboard" role="tabpanel" aria-labelledby="custom-content-below-dashboard-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="font-size: 23px;font-weight: 900;">DETAILS</h3>
+
+                         
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <form method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" name="id" value="@Model.Category1.Id" />
+                                <div class="form-group">
+                                    <label asp-for="Category1.Description" class="control-label"></label>
+                                    <textarea asp-for="Category1.Description" class="form-control summernote">@Model.Category1.Description</textarea>
+                                    <span asp-validation-for="Category1.Description" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Category1.ShowStatus" class="control-label"></label>
+                                    @Html.DropDownListFor(model => model.Category1.ShowStatus, new SelectList(Enum.GetValues(typeof(BNState.Domain.Models.Enum.ShowStatus))), new { @class = "form-control", required="required" })
+                                    <span asp-validation-for="Category1.ShowStatus" class="text-danger"></span>
+                                </div>
+                                @if(Model.Category1.LogoUrl != null){
+                                <div class="form-group">
+                                    <label class="control-label">Existing Logo</label><br />
+                                    <a>
+                                            <img src="@Model.Category1.LogoUrl" style="max-height:200px;" />
+                                    </a>
+                                </div>
+                                }
+                                <div class="form-group">
+                                    <label asp-for="Category1.LogoUrl" class="control-label">Logo</label><br />
+                                    <input type="file" class="control-label" asp-for="xfile" />
+                                </div>
+                          
+                                <div class="form-group">
+                                    <input type="submit" value="Update" class="btn btn-primary" />
+                                     
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+       
+
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.card -->

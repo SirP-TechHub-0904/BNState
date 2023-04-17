@@ -1,0 +1,120 @@
+﻿@page
+@model BNState.Web.Areas.Secured.Pages.Categories.Cat.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].Default)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].Order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].ShowAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].ShowEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].PhoneNumbers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].ShowPhoneNumbers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].Website)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].ShowWebsite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].ShowCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category1[0].Color)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Category1) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Default)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumbers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowPhoneNumbers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowWebsite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

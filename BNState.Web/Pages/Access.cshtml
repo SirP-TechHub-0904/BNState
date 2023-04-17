@@ -1,0 +1,175 @@
+﻿
+@page
+@model BNState.Web.Pages.AccessModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "/Pages/Shared/_Login.cshtml";
+   
+}
+<style>
+    .css-ft5043 {
+        box-sizing: border-box;
+        margin: 0;
+        min-width: 0;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #707A8A;
+        margin-bottom: 12px;
+    }
+
+    .css-gflt22 {
+        box-sizing: border-box;
+        margin: 0;
+        min-width: 0;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        border: 1px solid #f5f5f5;
+        border-radius: 23px;
+        display: -webkit-inline-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        margin: 0 auto 8px;
+        width: auto;
+        padding: 8px 24px;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .css-1ur07bk {
+        box-sizing: border-box;
+        margin: 0;
+        min-width: 0;
+        line-height: 18px;
+        height: 18px;
+    }
+
+    .css-1mb79dz {
+        box-sizing: border-box;
+        margin: 0;
+        min-width: 0;
+        color: #0ECB81;
+        width: 18px;
+        height: 18px;
+        font-size: 18px;
+        fill: #1E2329;
+        fill: #0ECB81;
+        width: 1em;
+        height: 1em;
+        margin-right: 4px;
+    }
+
+    .css-vurnku {
+        box-sizing: border-box;
+        margin: 0;
+        min-width: 0;
+    }
+
+    .css-e4p3 {
+        box-sizing: border-box;
+        margin: 0;
+        min-width: 0;
+        color: #0ECB81;
+        margin-right: 0;
+    }
+</style>
+
+
+<div class="login-6">
+    <div class="container-fluid">
+        <div class="row login-box">
+            <div class="col-lg-6 bg-color-15 align-self-center pad-0 none-992 bg-img">
+                <div class="info clearfix">
+                   @* <h1>Welcome to <span>Benue State Dashboard</span></h1>
+                    <p>
+Your Realtime Data
+                    </p>*@
+                </div>
+            </div>
+            <div class="col-lg-6 align-self-center pad-0 form-section clip-home">
+                <div class="form-inner">
+                    <a href="/" class="logo">
+                        <img src="~/img/logo-1.png" alt="logo">
+                    </a>
+                    <div data-bn-type="text" class="css-leflpn">
+                        <div data-bn-type="text" class="css-ft5043" style="color:#f5f5f5;">Please check that you are visiting the correct URL</div>
+                        <div data-bn-type="text" class="css-gflt22">
+                            <div class="css-1ur07bk">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" class="css-1mb79dz">
+                                    <path d="M16.27 10.5V8.07C16.27 5.82 14.45 4 12.2 4S8.13 5.82 8.13 8.07v2.43H6v8.94h12.43V10.5h-2.16zm-3.07 6.46h-2v-4h2v4zm1.07-6.46h-4.14V8.07c0-1.14.93-2.07 2.07-2.07 1.14 0 2.07.93 2.07 2.07v2.43z" fill="currentColor"></path>
+                                </svg>
+                            </div><div dir="ltr" class="css-vurnku">
+                                <span data-bn-type="text" class="css-e4p3">https://</span>
+                                <span style="color:#f5f5f5;">benueportal.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Sign into your account</h3>
+                    <form id="account" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input name="returnUrl" type="hidden" value="@Model.ReturnUrl">
+                        <div class="form-group form-box">
+                            <input type="email" asp-for="Input.Email" class="input-text" placeholder="Email Address">
+                            <i class="fa fa-envelope"></i>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form-box" style="margin-bottom:4px;">
+                            <input type="password" asp-for="Input.Password" class="input-text" id="myInput" placeholder="Password">
+                            <i class="fa fa-lock"></i>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix" style="margin-bottom:20px;">
+                            <input type="checkbox" onclick="myFunction()" style="float:left;"><span style="float:left;">Show Password</span>
+                        </div>
+
+                        <div class="checkbox form-group clearfix">
+                            <div class="form-check checkbox-theme">
+                                <input class="form-check-input" type="checkbox" asp-for="Input.RememberMe" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a id="forgot-password" asp-page="./ForgotPassword" class="forgot-password">Forgot Password</a>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn-md btn-theme btn-block">Login</button>
+                        </div>
+
+
+                    </form>
+                    <div class="clearfix"></div>
+
+
+                    <p>
+                        We are here to serve you better...
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+
+}

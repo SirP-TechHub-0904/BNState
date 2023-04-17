@@ -1,0 +1,217 @@
+﻿@page
+@model BNState.Web.Areas.Secured.Pages.Organogram.Level1.UpdateModel
+@{
+}
+<div class="card card-default">
+    <div class="card-header">
+        <h3 class="card-title text-uppercase">ADD OFFICIAL TO @Model.OgLevel1.Title</h3>
+
+    </div>
+    <!-- /.card-header -->
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="OgAppointment.OgLevel1" value="@Model.OgLevel1.Id" />
+                    <input type="hidden" asp-for="OgAppointment.Id" value="@Model.OgAppointment.Id" />
+                    <input type="hidden" asp-for="RouteId" />
+
+                    <div class="form-group">
+                        <label asp-for="OgAppointment.Position" class="control-label"></label>
+                        <input asp-for="OgAppointment.Position" class="form-control" />
+                        <span asp-validation-for="OgAppointment.Position" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OgAppointment.StartOfAppointment" class="control-label"></label>
+                        <input asp-for="OgAppointment.StartOfAppointment" class="form-control" />
+                        <span asp-validation-for="OgAppointment.StartOfAppointment" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OgAppointment.EndOfAppointment" class="control-label"></label>
+                        <input asp-for="OgAppointment.EndOfAppointment" class="form-control" />
+                        <span asp-validation-for="OgAppointment.EndOfAppointment" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            <a asp-page="/ProfilePage/ProfileAccount" asp-route-id="@Model.OgAppointment.ProfileId"> 
+                                <h6>@Model.OgAppointment.Profile.Fullname is the current profile linked to these appointment.</h6></a>
+                        </label>
+                       
+                    </div>
+
+                    <div id="myForm2">
+                        <div class="form-group">
+                            <label asp-for="OgAppointment.ProfileId" class="control-label">Change Profile (kindly search the name to avoid duplicate. if name not found check these box to create an account. <input type="checkbox" id="showForm" />)</label>
+
+                            <select asp-for="OgAppointment.ProfileId" class="form-control select2 select2-primary js-example-basic-single" data-dropdown-css-class="select2-primary" asp-items="ViewBag.ProfileId">
+                                <option selected="selected">Choose from list of available names</option>
+                            </select>
+
+
+                            <span asp-validation-for="OgAppointment.ProfileId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div id="myForm">
+                        <div class="form-group">
+                            <label class="control-label">New Profile Account (kindly search the name to avoid duplicate. click the check box to check. <input type="checkbox" id="showForm2" />)</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Profile.Title" class="control-label"></label>
+                            <select asp-for="Profile.Title" class="form-control" required="required">
+
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Chief">Chief</option>
+                                <option value="Alhaji">Alhaji</option>
+                                <option value="Mallam">Mallam</option>
+                                <option value="Ambassador">Ambassador</option>
+                                <option value="Col.">Col.</option>
+                                <option value="Major General">Major General</option>
+                                <option value="Comrade">Comrade</option>
+                                <option value="Captain">Captain</option>
+                                <option value="Capt Navy.">Capt Navy.</option>
+                                <option value="Brig Gen.">Brig Gen.</option>
+                                <option value="Air Comdr.">Air Comdr.</option>
+                                <option value="AVM">AVM</option>
+                                <option value="Gp Capt.">Gp Capt.</option>
+                                <option value="Dr">Dr</option>
+                                <option value="Engr.">Engr.</option>
+                                <option value="Pharm.">Pharm.</option>
+                                <option value="CP">CP</option>
+                                <option value="AIG">AIG</option>
+                                <option value="DIG">DIG</option>
+                                <option value="Prof.">Prof.</option>
+                                <option value="Barr.">Barr.</option>
+                                <option value="Hajiya">Hajiya</option>
+                                <option value="Prince">Prince</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Princess">Princess</option>
+                                <option value="Commodore">Commodore</option>
+                                <option value="Brig.">Brig.</option>
+                                <option value="Major">Major</option>
+                                <option value="Hon.">Hon.</option>
+                                <option value="Hon. Justice">Hon. Justice</option>
+                                <option value="HRH">HRH</option>
+
+
+                            </select>                            <span asp-validation-for="Profile.Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.SurName" class="control-label"></label>
+                            <input asp-for="Profile.SurName" class="form-control" />
+                            <span asp-validation-for="Profile.SurName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.FirstName" class="control-label"></label>
+                            <input asp-for="Profile.FirstName" class="form-control" />
+                            <span asp-validation-for="Profile.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.LastName" class="control-label"></label>
+                            <input asp-for="Profile.LastName" class="form-control" />
+                            <span asp-validation-for="Profile.LastName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.Email" class="control-label"></label>
+                            <input asp-for="Profile.Email" class="form-control" />
+                            <span asp-validation-for="Profile.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.PhoneNumber" class="control-label"></label>
+                            <input asp-for="Profile.PhoneNumber" class="form-control" />
+                            <span asp-validation-for="Profile.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.AltPhone" class="control-label"></label>
+                            <input asp-for="Profile.AltPhone" class="form-control" />
+                            <span asp-validation-for="Profile.AltPhone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.Address" class="control-label"></label>
+                            <textarea asp-for="Profile.Address" class="form-control"></textarea>
+                            <span asp-validation-for="Profile.Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.Gender" class="control-label"></label>
+                            @Html.DropDownListFor(model => model.Profile.Gender, new SelectList(Enum.GetValues(typeof(BNState.Domain.Models.Enum.GenderStatus))), new { @class = "form-control", required="required" })
+                            <span asp-validation-for="Profile.Gender" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.MaritalStatus" class="control-label"></label>
+                            @Html.DropDownListFor(model => model.Profile.MaritalStatus, new SelectList(Enum.GetValues(typeof(BNState.Domain.Models.Enum.MaritalStatus))), new { @class = "form-control", required="required" })
+                            <span asp-validation-for="Profile.MaritalStatus" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.ReligionStatus" class="control-label"></label>
+                            @Html.DropDownListFor(model => model.Profile.ReligionStatus, new SelectList(Enum.GetValues(typeof(BNState.Domain.Models.Enum.ReligionStatus))), new { @class = "form-control", required="required" })
+                            <span asp-validation-for="Profile.ReligionStatus" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.Biography" class="control-label"></label>
+                            <textarea asp-for="Profile.Biography" class="form-control summernote"></textarea>
+                            <span asp-validation-for="Profile.Biography" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        <a asp-page="./Index" class="btn bg-gradient-warning btn-sm" style="float:right;">Back</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- /.row -->
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+    </div>
+</div>
+
+<style>
+    #myForm {
+        display: none;
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+    <script>
+        var checkbox = document.getElementById("showForm");
+        var checkbox2 = document.getElementById("showForm2");
+        var form = document.getElementById("myForm");
+        var form2 = document.getElementById("myForm2");
+
+        checkbox.addEventListener('change', function () {
+            if (this.checked) {
+                form.style.display = "block";
+                form2.style.display = "none";
+            } else {
+                form.style.display = "none";
+                form2.style.display = "block";
+            }
+        });
+
+        checkbox2.addEventListener('change', function () {
+            if (this.checked) {
+                form.style.display = "none";
+                form2.style.display = "block";
+            } else {
+                form.style.display = "block";
+                form2.style.display = "none";
+            }
+        });
+
+    </script>
+}

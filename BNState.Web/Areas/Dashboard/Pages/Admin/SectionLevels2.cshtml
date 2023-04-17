@@ -1,0 +1,214 @@
+﻿@page
+@model BNState.Web.Areas.Dashboard.Pages.Admin.SectionLevels2Model
+@{
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header" style="padding:0;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="m-0" style="text-align:center;font-size: 1.38rem;font-weight:900;">BENUE DASHBOARD</h1>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid card">
+
+
+            @if (Model.Category4.ShowStatus == BNState.Domain.Models.Enum.ShowStatus.Profiles)
+            {
+                <div class="row">
+                    @foreach (var item in Model.AppointmentsList)
+                    {
+                        <!-- small box -->
+                        <div class="col-md-3">
+
+                            <!-- Profile Image -->
+                            <div class="card card-outline" style="margin-top: 1rem;">
+                                <div class="card-body box-profile @item.Color">
+                                    <div class="text-center">
+                                        @if (item.Image != null)
+                                        {
+                                            <img class="profile-user-img img-fluid img-circle" style="border-radius:50%;max-height:100px;"
+                                                 src="@item.Image"
+                                                 alt="User profile picture">
+                                        }
+                                        else
+                                        {
+                                            <img class="profile-user-img img-fluid img-circle" style="border-radius:50%"
+                                                 src="~/img/logo-1.png"
+                                                 alt="User profile picture">
+                                        }
+                                    </div>
+
+                                    <h3 class="profile-username text-center">@item.Title</h3>
+                                    <a asp-page="./ProfileAccountPage" asp-route-id="@item.UserId"> <h5 class="profile-username text-center">@item.Fullname</h5></a>
+
+
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+
+                        </div>
+
+
+                    }
+
+                </div>
+
+            }
+            else if (Model.Category4.ShowStatus == BNState.Domain.Models.Enum.ShowStatus.Offices)
+            {
+                <div class="content-header" style="padding:1px 0;">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12" style="padding-left:0;">
+                                <h5 class="m-0" style="font-weight:900;"></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var item in Model.Category)
+                    {
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <a asp-page="./SectionLevels" asp-route-id="@item.Id" class="small-box-footer">
+                                <div class="small-box @item.Color" style="margin-bottom: 7.5px;margin-top: 7.5px;">
+                                    <div class="inner">
+                                        <h3 style="white-space: normal;text-align: center;height: 35px;">
+                                            @item.Title
+                                        </h3>
+
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+
+
+                                </div>
+                            </a>
+                        </div>
+                        <!-- ./col -->
+                    }
+
+                </div>
+            }
+
+            else if (Model.Category4.ShowStatus == BNState.Domain.Models.Enum.ShowStatus.Both)
+            {
+                <div class="card-body">
+                    <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+                        <li class="nav-item">
+                            <a style="font-size: 23px;font-weight: 900;" class="nav-link active" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">KEY OFFICES (@Model.Category.Count())</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="font-size: 23px;font-weight: 900;" class="nav-link " id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">DIRCTORS AND OFFICIALS (@Model.AppointmentsList.Count())</a>
+                        </li>
+
+
+                    </ul>
+                    <div class="tab-content" id="custom-content-below-tabContent">
+                        <div class="tab-pane fade" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
+                            <div class="card">
+                                <div class="row">
+                                    @foreach (var item in Model.AppointmentsList)
+                                    {
+                                        <!-- small box -->
+                                        <div class="col-md-3">
+
+                                            <!-- Profile Image -->
+                                            <div class="card card-outline" style="margin-top: 1rem;">
+                                                <div class="card-body box-profile @item.Color">
+                                                    <div class="text-center">
+                                                        @if (item.Image != null)
+                                                        {
+                                                            <img class="profile-user-img img-fluid img-circle" style="border-radius:50%;max-height:100px;"
+                                                                 src="@item.Image"
+                                                                 alt="User profile picture">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="profile-user-img img-fluid img-circle" style="border-radius:50%"
+                                                                 src="~/img/logo-1.png"
+                                                                 alt="User profile picture">
+                                                        }
+                                                    </div>
+
+                                                    <h3 class="profile-username text-center">@item.Title</h3>
+                                                    <a asp-page="./ProfileAccountPage" asp-route-id="@item.UserId"> <h5 class="profile-username text-center">@item.Fullname</h5></a>
+
+
+
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+
+                                        </div>
+
+
+                                    }
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="tab-pane fade show active" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+                            <div class="card">
+
+
+                                <div class="row">
+                                    @foreach (var item in Model.Category)
+                                    {
+                                        <div class="col-lg-3 col-6">
+                                            <!-- small box -->
+                                            <a asp-page="./SectionLevels" asp-route-id="@item.Id" class="small-box-footer">
+                                                <div class="small-box @item.Color" style="margin-bottom: 7.5px;margin-top: 7.5px;">
+                                                    <div class="inner">
+                                                        <h3 style="white-space: normal;text-align: center;height: 35px;">
+                                                            @item.Title
+                                                        </h3>
+
+                                                    </div>
+                                                    <div class="icon">
+                                                        <i class="ion ion-pie-graph"></i>
+                                                    </div>
+
+
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <!-- ./col -->
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            }
+
+            else
+            {
+                <h5 class="text-center">NO DATA</h5>
+            }
+
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

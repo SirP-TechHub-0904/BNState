@@ -1,0 +1,198 @@
+﻿@page
+@model BNState.Web.Areas.Secured.Pages.Organogram.Level1.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<!-- /.card -->
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-edit"></i>
+            @Model.OgLevel1.Title
+        </h3>
+    </div>
+    <div class="card-body">
+        <p class="text-justify">@Model.OgLevel1.Description</p>
+
+    </div>
+    <div class="card-body">
+        <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+            <li class="nav-item">
+                <a style="font-size: 23px;font-weight: 900;" class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Officials (@Model.OgLevel1.Appointments.Count())</a>
+            </li>
+            <li class="nav-item">
+                <a style="font-size: 23px;font-weight: 900;" class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Subsidiaries (@Model.OgLevel1.OgLevel2s.Count())</a>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="custom-content-below-tabContent">
+            <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="font-size: 23px;font-weight: 900;">
+                            Officials
+                        </h3>
+
+
+                        <a asp-page="./NewOfficial" asp-route-id="@Model.OgLevel1.Id" class="btn bg-gradient-warning btn-sm" style="float:right;">Add New</a>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>
+                                            Position
+                                        </th>
+                                        <th>
+                                            Fullname
+                                        </th>
+                                        <th>Appointment</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @{
+                                    int sn = 0;
+                                }
+                                <tbody>
+                                    @foreach (var item in Model.OgLevel1.Appointments)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{
+                                                    sn++;
+                                                }
+                                                @sn
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.Position)
+
+                                            </td>
+                                            <td>
+                                                <a asp-page="/ProfilePage/ProfileAccount" asp-route-id="@item.ProfileId">
+                                                    @Html.DisplayFor(modelItem => item.Profile.Fullname)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @item.StartOfAppointment.ToString("yyyy") - @item.EndOfAppointment.ToString("yyyy")
+                                            </td>
+
+                                            <td>
+                                                <a asp-page="./Update" asp-route-id="@item.OgLevel1Id" asp-route-mid="@item.Id" class="float-left btn btn-warning btn-sm" style="margin-right:5px;"><i class="fa fa-pencil"></i></a>
+                                                <form method="post" asp-page-handler="Delete">
+                                                    <input type="hidden" name="id" value="@item.Id" />
+                                                    <input type="hidden" name="mid" value="@item.OgLevel1Id" />
+                                                    <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-times"></i></button>
+
+                                                </form>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="font-size: 23px;font-weight: 900;">Subsidiaries</h3>
+
+
+                        <a asp-page="./NewLevel" asp-route-id="@Model.OgLevel1.Id" class="btn bg-gradient-warning btn-sm" style="float:right;">Add New</a>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>
+                                            Title
+                                        </th>
+                                        <th>
+                                            Head
+                                        </th>
+                                        <th>Sub</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @{
+                                    int tsn = 0;
+                                }
+                                <tbody>
+                                    @foreach (var item in Model.OgLevel1.OgLevel2s)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{
+                                                    tsn++;
+                                                }
+                                                @tsn
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.Title)
+
+                                            </td>
+                                            <td>
+                                                <a asp-page="./Details" asp-route-id="@item.Id">
+                                                    @{
+                                                        var subs = item.Appointments.FirstOrDefault();
+                                                    }
+                                                    @if (subs != null)
+                                                    {
+                                                        <a asp-page="/ProfilePage/ProfileAccount" asp-route-id="@subs.ProfileId">
+                                                        <h4>@subs.Profile.Fullname</h4>
+                                                        </a>
+                                                        <h5>@subs.Position</h5>
+                                                        <h6>@subs.StartOfAppointment.ToString("yyyy") - @subs.EndOfAppointment.ToString("yyyy")</h6>
+                                                    }                        else
+                                                        {
+                                                            <h6>----/-----</h6>
+                                                        }
+
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @item.OgLevel3s.Count()
+                                            </td>
+                                            <td>
+                                                <a asp-page="./UpdateLevel" asp-route-id="@item.OgLevel1Id" asp-route-mid="@item.Id" class="float-left btn btn-warning btn-sm" style="margin-right:5px;"><i class="fa fa-pencil"></i></a>
+                                                <form method="post" asp-page-handler="DeleteLevel">
+                                                    <input type="hidden" name="id" value="@item.Id" />
+                                                    <input type="hidden" name="mid" value="@item.OgLevel1Id" />
+                                                    <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-times"></i></button>
+
+                                                </form>
+                                            </td>
+
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+         
+
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.card -->

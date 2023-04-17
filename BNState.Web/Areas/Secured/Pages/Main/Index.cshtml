@@ -1,0 +1,131 @@
+﻿@page
+@model BNState.Web.Areas.Secured.Pages.Main.IndexModel
+@{
+}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Dashboard List</h3>
+
+        <form method="post"> 
+            <input type="submit" value="Rearrange Sort Order" class="btn btn-primary pull-right" /> 
+             
+        </form>
+ 
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            People Under Here
+                        </th>
+                        <th>Offices Under Here</th>
+                         <th>Color</th>
+                        <th>Sort Order</th>
+                        <th>Adjust</th>
+                        <th>Count To Use</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @{
+                    int sn = 0;
+                }
+                <tbody>
+                    @foreach (var item in Model.Dashboard)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    sn++;
+                                }
+                                @sn
+                            </td>
+                            <td>
+                                 
+                                <a asp-page="/Admin/@item.ModelString" asp-route-id="@item.Id">
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserNumbers)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OfficeNumbers)
+                            </td>
+                            <td>
+                                <span style="height:15px;width:15px;" class="btn @item.Color">.</span>
+                            </td>
+                           <td>@item.DashboardOrder    
+                                
+                           </td>
+                           <td>
+                                <form method="post" asp-page-handler="UpMove">
+                                    <input type="hidden" asp-for="SortId" value="@item.DashboardOrder" />
+                                    <button type="submit" class="btn btn-success btn-xs"><i class="fa fa-arrow-up"></i></button>
+
+                                </form>
+                                <form method="post" asp-page-handler="DownMove">
+                                    <input type="hidden" asp-for="SortId" value="@item.DashboardOrder" />
+                                    <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-arrow-down"></i></button>
+
+                                </form>
+                            </td>
+
+                            <td>
+                                <form method="post" asp-page-handler="UserCount">
+                                    <input type="hidden" asp-for="SortId" value="@item.DashboardOrder" />
+                                    @if(item.UserCount == true)
+                                    {
+                                        <button disabled="disabled" class="btn btn-success btn-xs">Use People <i class="fa fa-check"></i></button>
+
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-success btn-xs">Use People </button>
+                                    }
+
+                                </form>
+                                <form method="post" asp-page-handler="DownMove">
+                                    <input type="hidden" asp-for="SortId" value="@item.DashboardOrder" />
+                                    @if (item.OfficeCount == true)
+                                    {
+                                        <button disabled="disabled" class="btn btn-success btn-xs">Use Offices <i class="fa fa-check"></i></button>
+
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-success btn-xs">Use Offices </button>
+                                    }
+                                </form>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success">Action</button>
+
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+                                        </button>
+                                        <div class="dropdown-menu" style="">
+
+                                            <a class="dropdown-item" asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                                            <a class="dropdown-item" asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

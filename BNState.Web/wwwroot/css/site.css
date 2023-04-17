@@ -1,0 +1,48 @@
+@media (min-width: 1200px) {
+    .col-lg-3 .small-box h3, .col-md-3 .small-box h3, .col-xl-3 .small-box h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-lg-3 .small-box h3, .col-md-3 .small-box h3, .col-xl-3 .small-box h3 {
+        font-size: 1.06rem;
+    }
+}
+ 
+.noline {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.noline9 {
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align:justify !important;
+}
+.nav-sidebar > .nav-item .nav-icon.fa, .nav-sidebar > .nav-item .nav-icon.fab, .nav-sidebar > .nav-item .nav-icon.fad, .nav-sidebar > .nav-item .nav-icon.fal, .nav-sidebar > .nav-item .nav-icon.far, .nav-sidebar > .nav-item .nav-icon.fas, .nav-sidebar > .nav-item .nav-icon.ion, .nav-sidebar > .nav-item .nav-icon.svg-inline--fa {
+    font-size: .9rem;
+}
+.nav-link {
+    display: block;
+    padding: .2rem .4rem;
+}
+li p {
+    font-size: .9rem;
+}
+.nav-sidebar .nav-item > .nav-link {
+    margin-bottom: .1rem;
+}
+.nav-sidebar .nav-header {
+    font-size: .9rem;
+    padding: .2rem .4rem;
+}
+.small-box .icon > i.fa, .small-box .icon > i.fab, .small-box .icon > i.fad, .small-box .icon > i.fal, .small-box .icon > i.far, .small-box .icon > i.fas, .small-box .icon > i.ion {
+    font-size: 40px;
+    top: 20px;
+}

@@ -1,0 +1,87 @@
+﻿@page
+@model BNState.Web.Pages.ComingSoonModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://www.w3schools.com/howto/tryhow_css_fullpage_demo.htm -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font: 400 15px/1.8 "Lato", sans-serif;
+            color: #777;
+        }
+
+        .bgimg-1, .bgimg-2, .bgimg-3 {
+            position: relative;
+             
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .bgimg-1 {
+            background-image: url("../img/tower1.jpg");
+            height: 100%;
+        }
+
+        .caption {
+            position: absolute;
+            left: 0;
+            top: 1%;
+            width: 100%;
+            text-align: center;
+            color: #000;
+        }
+
+            .caption span.border {
+                 
+                color: #fff;
+                font-weight:900;
+                padding: 18px;
+                font-size: 25px;
+                letter-spacing: 10px;
+            }
+
+        h3 {
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font: 20px "Lato", sans-serif;
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bgimg-1">
+        <div class="caption">
+            <span class="border">
+                @if (Model.Category2.Image != null)
+                {
+                    <img class="profile-user-img img-fluid img-circle"
+                         src="@Model.Category2.Image"
+                         alt="User profile picture">
+                }
+                else
+                {
+                    <img class="profile-user-img img-fluid img-circle"
+                         src="~/img/logo-1.png"
+                         alt="User profile picture">
+                }
+
+            </span><br>
+            <span class="border uppercase" style="">@Model.Category2.Title PORTAL</span>
+            <br />
+            <span class="border">COMING SOON...</span>
+        </div>
+    </div>
+
+ 
+
+</body>
+</html>

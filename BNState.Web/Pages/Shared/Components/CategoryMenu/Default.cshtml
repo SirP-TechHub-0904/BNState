@@ -1,0 +1,15 @@
+﻿@model ICollection<BNState.Domain.Models.Category1>
+
+
+@foreach (var x in Model)
+{
+    <li class="nav-item">
+        <a asp-page="/Categories/Level1/Details" asp-area="Secured" asp-route-id="@x.Id" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p class="uppercase">
+                @x.Title
+            </p>
+        </a>
+    </li>
+
+}

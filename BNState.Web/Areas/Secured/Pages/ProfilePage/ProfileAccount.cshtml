@@ -1,0 +1,89 @@
+﻿@page
+@model BNState.Web.Areas.Secured.Pages.ProfilePage.ProfileAccountModel
+@{
+}
+<div class="card card-default">
+    <div class="card-header">
+        <h3 class="card-title">Profile</h3>
+        <a href="javascript:history.back()" class="btn bg-gradient-danger btn-sm" style="float:right;">Back</a>
+        <a asp-page="./ProfileUpdate" asp-route-id="@Model.Profile.Id" asp-route-p1="@Model.P1" asp-route-p2="@Model.P2" asp-route-lid="@Model.Lid" class="btn bg-warning btn-xs" style="float:right;margin-left:4px;margin-right:4px;">Edit @Model.Profile.Fullname Information</a>
+        <a asp-page="/ProfilePage/Edit" class="btn btn-warning btn-xs"></a>
+
+    </div>
+    <!-- /.card-header -->
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                       Fullname
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Profile.Fullname)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Profile.PhoneNumber)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Profile.PhoneNumber),
+                        @Html.DisplayFor(model => model.Profile.AltPhone)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Profile.Email)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Profile.Email)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Profile.Description)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Profile.Description)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Profile.Address)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Profile.Address)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Profile.MaritalStatus)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Profile.MaritalStatus)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Profile.ReligionStatus)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Profile.ReligionStatus)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Profile.Gender)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Profile.Gender)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Profile.PhotoUrl)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <a>
+                            <img src="@Model.Profile.PhotoUrl" style="max-height:200px;" />
+                        </a>
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Profile.Biography)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.Raw(Model.Profile.Biography)
+                    </dd>
+                   
+                </dl>
+
+            </div>
+        </div>
+    </div>
+</div>
+
