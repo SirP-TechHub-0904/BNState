@@ -46,7 +46,7 @@ namespace BNState.Domain.Data
         public ApplicationDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            optionsBuilder.UseSqlServer("Server=SQL5110.site4now.net;Database=db_a6fbb5_glance;User Id=db_a6fbb5_glance_admin;Password=Glance@247;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer("Server=SQL5110.site4now.net;Database=db_a6fbb5_bn;User Id=db_a6fbb5_bn_admin;Password=Admin@123;MultipleActiveResultSets=true");
 
             return new ApplicationDbContext(optionsBuilder.Options);
         }
